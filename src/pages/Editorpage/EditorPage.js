@@ -1,12 +1,19 @@
 import React from 'react'
 import Client from '../../components/Client'
-import Editor from '../../components/Editor'
+
 import { initSocket } from '../../socket'
-import ACTIONS from '../../Actions/Actions'
-import { useLoaderData, useLocation, useNavigate, Navigate } from 'react-router-dom'
+
+import { useLocation, useNavigate, Navigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 import LOGO from '../../Images/code-sync.png'
+import HTMLEditor from '../../components/HTMLEditor'
+import CSSEditor from '../../components/CSSEditor'
+import JSEditor from '../../components/JSEditor'
+import Results from '../../components/Results'
+import ACTIONS from '../../Actions/Actions'
+
+
 
 
 
@@ -15,7 +22,6 @@ import LOGO from '../../Images/code-sync.png'
 const EditorPage = () => {
 
   React.useEffect(() => {
-    // console.log('URL' , process.env.REACT_APP_BACKEND_URL)
     Initialize()
 
     //  * off : Unbind the specified event handler (opposite of .on()). That is Unsubscribing
@@ -30,10 +36,11 @@ const EditorPage = () => {
 
 
 
-
-
-  const codeRef = React.useRef(null)
   const socketRef = React.useRef(null)
+  const HTML_codeRef = React.useState(null)
+  const CSS_codeRef = React.useState(null)
+  const JS_codeRef = React.useState(null)
+
   const location = useLocation()
   const roomId = location.pathname.split("/")[2]
 
@@ -41,7 +48,7 @@ const EditorPage = () => {
 
   const [clients, setClients] = React.useState([])
 
-  // console.log('location', roomId)
+
 
 
 
@@ -69,18 +76,41 @@ const EditorPage = () => {
         toast.success(`${username} has joined`)
       }
 
+    
       setClients(clients)
 
-      socketRef.current.emit(ACTIONS.SYNC_CODE , {
-        code: codeRef.current,
+
+      // * Emitting events for auto-syncing with the existing code on initial join 
+
+      socketRef.current.emit('HTML_SYNC_CODE', {
+        code: HTML_codeRef.current,
         socketId: socketId
       })
+
+      socketRef.current.emit('CSS_SYNC_CODE', {
+        code: CSS_codeRef.current,
+        socketId: socketId
+      })
+
+      socketRef.current.emit('JS_SYNC_CODE', {
+        code: JS_codeRef.current,
+        socketId: socketId
+      })
+
+
     })
 
 
-    // & Listening for disconnected
+
+
+    // & Listening for disconnected event
     socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
       toast.success(`${username} left the room`)
+
+      // * Clearing localstorage data on leaving the room ie on disconnecting
+      localStorage.removeItem('HTML')
+      localStorage.removeItem('CSS')
+      localStorage.removeItem('JS')
 
       setClients((prev) => {
         const updatedClientList = prev.filter((client) => client.socketId !== socketId)
@@ -93,21 +123,20 @@ const EditorPage = () => {
 
 
   const handleError = (e) => {
-    console.log(e)
     toast.error("Socket connection failed , try again later.")
     reactNavigator('/')
   }
 
 
 
-  const copyRoomId = async() => {
-      try{
-        await navigator.clipboard.writeText(roomId)
-        toast.success('RoomId has been copied')
-      }
-      catch(error){
-        toast.error('Could not copy RoomId')
-      }
+  const copyRoomId = async () => {
+    try {
+      await navigator.clipboard.writeText(roomId)
+      toast.success('RoomId has been copied')
+    }
+    catch (error) {
+      toast.error('Could not copy RoomId')
+    }
   }
 
 
@@ -130,7 +159,6 @@ const EditorPage = () => {
 
 
   if (!location.state) {
-    console.log("hello")
     return <Navigate to="/" />
   }
 
@@ -150,7 +178,7 @@ const EditorPage = () => {
             />
           </div>
 
-          <h3> Connected </h3>
+          <h3 className='connected'> Connected Users</h3>
 
           <div className='clientList'>
             {
@@ -160,20 +188,51 @@ const EditorPage = () => {
             }
           </div>
 
+          <div className='joined-user'>
+             You Joined as <span className='name'> {location.state?.username} </span>
+          </div>
+
         </div>
 
         <button className='btn copyBtn' onClick={copyRoomId}> COPY ROOM ID </button>
-        <button className='btn leaveBtn'  onClick={leaveRoom}> Leave </button>
+        <button className='btn leaveBtn' onClick={leaveRoom}> Leave </button>
 
       </div>
 
       <div className='editorWrap'>
-        <Editor
+
+        <HTMLEditor
           socketRef={socketRef}
           roomId={roomId}
-          onCodeChange={(code) => {codeRef.current = code}}
+          onCodeChange={(code) => { HTML_codeRef.current = code }}
+
+        // HTMLeditorRef={HTMLeditorRef}
+        />
+
+        <CSSEditor
+          socketRef={socketRef}
+          roomId={roomId}
+          onCodeChange={(code) => { CSS_codeRef.current = code }}
+        // CSSeditorRef={CSSeditorRef}
+        />
+
+        <JSEditor
+          socketRef={socketRef}
+          roomId={roomId}
+          onCodeChange={(code) => { JS_codeRef.current = code }}
         />
       </div>
+
+      <div className='Result-main'>
+        <div className='output-title'>
+          OUTPUT
+        </div>
+        <div className='result'>
+          <Results />
+        </div>
+      </div>
+
+
 
     </div>
   )

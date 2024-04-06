@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+## SnapShot of the Application
+___
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![p1](https://github.com/Sapnil-Bhowmick/Real-Time-Code-Collaboration/assets/118714419/11a06c6a-575f-4543-8710-23fe404554f9)
 
-In the project directory, you can run:
 
-### `npm start`
+## SyncWeave - A Fully Functional code editor where users can collaborate through real-time sync feature
+   
+___
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* A dynamic platform for real-time code collaboration in HTML, CSS, and JavaScript, featuring intuitive UI, theme customization, seamless connection handling, and persistent session data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## About The Project
+___
+* **This is a full-stack fast and Flexible code platform where users can collaborate and write code for HTML, CSS and Javascript along in real-time.**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Features
+___
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* The Welcome screen has an intuitive UI where users can type a customized RoomId or can create a new RoomId using the **new room** link.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* If the user has the invitation of some specific Room then simply paste the invitation Id and type your username to join the room.
 
-### `npm run eject`
+* A dropdown has been provided for choosing the desired **Editor Theme** of any choice
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* If at some time connection gets dropped then that specific user will be automatically redirected to the Welcome page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* On joining the room users can view 3 editors (HTML,CSS,JS) provided for writing code. All 3 editors have auto-scroll feature. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Users can **resize** each of the editors to a minimum & maximum width as per choice and the line-wrapping will work accordingly.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Users can also **Drag & Drop** code files and the code will get executed instantaneously.
 
-## Learn More
+* On the left side : List of Connected users has been provided which is the list of all connected users in a specific room. Whenever any new user 
+joins that room , the list will get updated and all other users in that room will be notified with a notification and they can also view the updated connected users in real-time.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Scroll down the list if needed to view all connected users in that room.
+* Hover over a specific avatar to see their full name
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Just below the list of connected users 2 buttons are provided 
+  - **COPY ROOM ID**: For copying and sharing the current RoomId.
+  - **Leave**: For leaving the specific room
+ 
 
-### Code Splitting
+* The right side of the screen shows the output which is also synced with 
+all users in a room in real-time
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Refreshing the page will **persist** the code in editors and also the output so there is no chance of losing the work in mid of any session
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## SyncWeave- Notifications 
 
-### Advanced Configuration
+* Notification will be shown to all existing users of a room every time a new user joins and leaves i.e disconnected from that room
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## A Drawback or Bug 
 
-### Deployment
+* Initially when a user joins a room then all the live code written by any other user in that room should get auto-synced in their editor. For some reason couldn't  receive the emitted auto-sync event.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## More Features That could be added
+___
 
-### `npm run build` fails to minify
+* Currently only 3 languages are supported. It can be extended to multiple languages.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* A messaging option could be provided so that users within a room can communicate with each other during a session.
+
+  

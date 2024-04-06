@@ -5,12 +5,16 @@ import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 
 import LOGO from '../../Images/code-sync.png'
+import { DataContext } from '../../context/codecontext';
+
 
 const HomePage = () => {
 
+  const {setTheme} = React.useContext(DataContext)
+
   const navigate = useNavigate()
   const [roomId, setRoomId] = React.useState('')
-  const [username , setUsername] = React.useState('')
+  const [username, setUsername] = React.useState('')
 
   const createRoom = (e) => {
     e.preventDefault()
@@ -21,24 +25,24 @@ const HomePage = () => {
 
 
   const joinRoom = () => {
-    if (!roomId){
+    if (!roomId) {
       toast.error("RoomId is required")
       return
     }
-    else if(!username){
+    else if (!username) {
       toast.error("Username is required")
       return
     }
 
-     navigate(`/editor/${roomId}` , {
+    navigate(`/editor/${roomId}`, {
       state: {
         username
       }
-     })
+    })
   }
 
   const handleEnterPress = (e) => {
-    if(e.code === "Enter"){
+    if (e.code === "Enter") {
       joinRoom()
     }
   }
@@ -50,7 +54,17 @@ const HomePage = () => {
 
         <img src={LOGO} alt="Application Logo" className='homePage-logo' />
 
-        <h4 className='mainLabel'> Paste Invitation ROOM ID </h4>
+        <div className='dropdown-div'> 
+          <h4 className='mainLabel'> Paste Invitation ROOM ID </h4>
+          <select className='dropdown mainLabel' onChange={(e) => setTheme(e.target.value)}>
+            <option value="dracula" selected> Dracula </option>
+            <option value="eclipse"> Eclipse </option>
+            <option value="night" > Night </option>
+            <option value="material" > Material </option>
+            <option value="monokai" > Monokai </option>
+            <option value="blackboard" > Blackboard </option>
+          </select>
+        </div>
 
         <div className='inputGroups'>
           <input
@@ -75,7 +89,7 @@ const HomePage = () => {
 
           <span className='createInfo'>
 
-            If you don't hanve an invite then create &nbsp;
+            If you don't have an invite then create &nbsp;
 
             <a onClick={createRoom} href="" className='createNewBtn'> new room  </a>
 
@@ -84,12 +98,12 @@ const HomePage = () => {
 
       </div>
 
-      <footer>
+      {/* <footer>
         <h4>
           Build with ❤ from Sapnil
           <a href="" > Github Id </a>
         </h4>
-      </footer>
+      </footer> */}
 
     </div>
   )

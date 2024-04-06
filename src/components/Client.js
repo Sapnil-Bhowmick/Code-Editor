@@ -12,7 +12,7 @@ const Client = ({ username }) => {
                 color="#fa0ca7"
             />
 
-            <span className='userName'>{username}</span>
+            <span className='userName'>{username?.split(" ")[0]}</span>
 
         </div>
     )

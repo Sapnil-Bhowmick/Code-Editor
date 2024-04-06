@@ -98,8 +98,11 @@ footer a:hover {
 
 .mainWrap {
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 230px 1fr 0.6fr;
   height: 100vh;
+  overflow: auto;
+
+  background-color: #1e0b9b7a;
 }
 
 .aside {
@@ -114,21 +117,29 @@ footer a:hover {
 }
 
 .clientList {
-  display: flex;
+  /* display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px
+  gap: 20px; */
+  background-color: #0c1022;
+  overflow: auto;
+  height: 20rem;
+  padding: 0px 10px;
 }
 
 .client {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   font-weight: bold;
+  margin: 14px 0px;
 }
 
 .userName{
   margin-top: 10px;
+  color: #fff;
+  margin-left: 8px;
+  font-size: 14px;
 }
 
 .logo{
@@ -152,18 +163,129 @@ footer a:hover {
 }
 
 .editorWrap{
-  background-color: #fff;
+  background-color: #353a3e;
+  resize: horizontal;
+  overflow: auto;
 }
 
 
 .CodeMirror{
-  min-height: calc(100vh - 20px);
+  /* min-height: calc(100vh - 20px); */
   font-size: 20px;
   line-height: 1.6;
   padding-top: 20px;
+  resize: horizontal;
+  min-width: 7rem;
+  max-width: 51rem;
   
 }
 
 .copyBtn{
   font-weight:bold;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.iframe{
+  /* background-color: #fff;
+  min-width: 31rem;
+  height: 100rem;
+  max-height: 44rem; */
+
+  background-color: #fff;
+  width: 37rem;
+  height: 100rem;
+  max-height: 44rem;
+}
+
+.editor-label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  background-color: #282a36;
+  color: #4aee88;
+  font-weight: bold;
+  font-size: 18px;
+  height: 37px;
+  padding: 0px 9px;;
+}
+
+/* .editor-div{
+  border: 3px solid #04032b;
+} */
+
+.p-25{
+  padding:25px
+}
+
+.result{
+  background-color: #0b0326;
+  padding: 33px;
+}
+
+.connected{
+  color: #49eb86;
+  text-align: center;
+}
+
+.output-title{
+  color: #fff;
+  background-color: #070339;
+  width: 7rem;
+  padding: 11px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.Result-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 11px;
+}
+
+
+.dropdown-div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  background-color: #343748;
+  color: #4aee88;
+  font-weight: bold;
+  font-size: 18px;
+  height: 37px;
+  padding: 0px 9px;
+  border: none;
+  margin-left: 8px;
+  border-radius: 6px;
+
+  transition: all 1s ease-in-out;
+}
+
+.dropdown:hover{
+  background-color: #070339;
+}
+
+
+.joined-user{
+  color: aliceblue;
+  text-align: center;
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: 21px;
+}
+
+.name{
+  color: #87fd11;
+  font-size: 27px;
 }
