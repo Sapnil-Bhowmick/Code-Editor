@@ -1,6 +1,11 @@
 ## SnapShot of the Application
 ___
 
+On scrolling down , JS editor will be available.
+
+The demo code is taken from : https://codepen.io/Kuutti-Siitonen/pen/KKJeOoQ
+
+Pen Title - **Interactive Magic Wand Cursor with Falling Star Effects**
 
 ![p1](https://github.com/Sapnil-Bhowmick/Real-Time-Code-Collaboration/assets/118714419/11a06c6a-575f-4543-8710-23fe404554f9)
 
